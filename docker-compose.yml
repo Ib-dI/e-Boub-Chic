@@ -1,0 +1,31 @@
+version: '3.8'              # Version de Docker Compose
+
+services:                   # Liste des services (conteneurs)
+
+  postgres:                 # Nom du service (tu peux l'appeler comme tu veux)
+    image: postgres:16-alpine  # L'image = la "recette" du conteneur
+    container_name: ecommerce-postgres  # Nom du conteneur
+    environment:            # Variables d'environnement (config)
+      POSTGRES_USER: postgres    # Utilisateur de la DB
+      POSTGRES_PASSWORD: postgres    # Mot de passe
+      POSTGRES_DB: e_boubchic   # Nom de la base de données
+    ports:
+      - "5432:5432"        # Port local:Port du conteneur
+                           # 5432 sur ta machine = 5432 dans le conteneur
+    volumes:               # Stockage persistant
+      - postgres_data:/var/lib/postgresql/data  # Les données restent même après redémarrage
+    healthcheck:           # Vérifie que le service démarre correctement
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:                   # 2e service
+    image: redis:7-alpine
+    container_name: ecommerce-redis
+    ports:
+      - "6379:6379"
+
+volumes:                   # Stockage des données
+  postgres_data:           # Les données PostgreSQL
+  redis_data:              # Les données Redis
