@@ -1,4 +1,3 @@
-version: '3.8'              # Version de Docker Compose
 
 services:                   # Liste des services (conteneurs)
 
