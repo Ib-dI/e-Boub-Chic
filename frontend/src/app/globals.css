@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --font-bricolage: var(--font-bricolage-grotesque);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,8 +53,8 @@
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(62.172% 0.17444 146.564); /* Bleu profond premium */
+  --primary-foreground: oklch(0.98 0.02 250);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -118,5 +120,50 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Animation delay pour les blobs */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  /* Glow effect */
+  .glow-blur {
+    filter: blur(32px);
+  }
+    .product-card-hover {
+    @apply transition-all duration-300;
+  }
+
+  /* Animation de l'image */
+  .product-card-image {
+    @apply transform transition-transform duration-300;
+  }
+
+  /* Glow effect au hover */
+  .product-card-glow {
+    @apply shadow-lg shadow-blue-500/20;
+  }
+}
+
+@keyframes slide-in-from-top-2 {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
