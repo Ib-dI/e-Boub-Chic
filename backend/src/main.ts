@@ -40,6 +40,9 @@ async function bootstrap() {
   console.log('📚 API Docs on http://localhost:3001/api/docs');
 }
 
-bootstrap().then((value) => {
-  return value;
-});
+bootstrap()
+  .then(() => console.log('🚀 App bootstrap completed'))
+  .catch((err) => {
+    console.error('❌ Error starting the server:', err);
+    process.exit(1);
+  });
